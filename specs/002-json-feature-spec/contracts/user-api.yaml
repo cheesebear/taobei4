@@ -1,0 +1,356 @@
+openapi: 3.0.3
+info:
+  title: 淘贝课堂用户管理API
+  description: 用户注册、登录、个人信息管理相关接口 (简化版Demo)
+  version: 1.0.0
+  contact:
+    name: 淘贝课堂开发团队
+    email: dev@taobei.demo
+
+servers:
+  - url: http://localhost:3001/api
+    description: 本地开发服务器
+  - url: https://api.taobei.demo
+    description: Demo演示服务器
+
+paths:
+  /auth/register:
+    post:
+      summary: 用户注册
+      description: 新用户注册接口，支持手机号注册 (Mock验证)
+      tags:
+        - 用户认证
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - phone
+                - password
+                - verifyCode
+                - agreeTerms
+              properties:
+                phone:
+                  type: string
+                  pattern: '^1[3-9]\d{9}$'
+                  description: 11位手机号
+                  example: "13812345678"
+                password:
+                  type: string
+                  minLength: 6
+                  maxLength: 20
+                  description: 用户密码
+                  example: "password123"
+                verifyCode:
+                  type: string
+                  pattern: '^\d{6}$'
+                  description: 短信验证码 (Demo固定为123456)
+                  example: "123456"
+                agreeTerms:
+                  type: boolean
+                  description: 是否同意用户协议
+                  example: true
+      responses:
+        '201':
+          description: 注册成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: "注册成功"
+                  data:
+                    $ref: '#/components/schemas/UserProfile'
+                  token:
+                    type: string
+                    description: JWT访问令牌
+                    example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+        '400':
+          description: 请求参数错误
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '409':
+          description: 手机号已注册
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /auth/login:
+    post:
+      summary: 用户登录
+      description: 用户密码登录接口 (Mock验证，任意密码都成功)
+      tags:
+        - 用户认证
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - phone
+                - password
+              properties:
+                phone:
+                  type: string
+                  pattern: '^1[3-9]\d{9}$'
+                  description: 11位手机号
+                  example: "13812345678"
+                password:
+                  type: string
+                  description: 用户密码
+                  example: "password123"
+                rememberMe:
+                  type: boolean
+                  description: 记住登录状态
+                  default: false
+      responses:
+        '200':
+          description: 登录成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: "登录成功"
+                  data:
+                    $ref: '#/components/schemas/UserProfile'
+                  token:
+                    type: string
+                    description: JWT访问令牌
+                    example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+        '401':
+          description: 登录失败
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /auth/logout:
+    post:
+      summary: 用户登出
+      description: 用户登出接口
+      tags:
+        - 用户认证
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: 登出成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: "登出成功"
+
+  /auth/verify-code:
+    post:
+      summary: 发送验证码
+      description: 发送短信验证码 (Demo返回固定验证码)
+      tags:
+        - 用户认证
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - phone
+              properties:
+                phone:
+                  type: string
+                  pattern: '^1[3-9]\d{9}$'
+                  description: 11位手机号
+                  example: "13812345678"
+      responses:
+        '200':
+          description: 验证码发送成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: "验证码已发送"
+                  data:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                        description: Demo环境返回的固定验证码
+                        example: "123456"
+
+  /user/profile:
+    get:
+      summary: 获取用户信息
+      description: 获取当前登录用户的个人信息
+      tags:
+        - 用户管理
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: 获取成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    $ref: '#/components/schemas/UserProfile'
+        '401':
+          description: 未授权访问
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    put:
+      summary: 更新用户信息
+      description: 更新当前登录用户的个人信息
+      tags:
+        - 用户管理
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  minLength: 2
+                  maxLength: 20
+                  description: 用户名
+                  example: "张三"
+                email:
+                  type: string
+                  format: email
+                  description: 邮箱地址
+                  example: "zhangsan@example.com"
+                avatar:
+                  type: string
+                  format: uri
+                  description: 头像URL
+                  example: "https://example.com/avatar.jpg"
+      responses:
+        '200':
+          description: 更新成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: "信息更新成功"
+                  data:
+                    $ref: '#/components/schemas/UserProfile'
+
+components:
+  schemas:
+    UserProfile:
+      type: object
+      properties:
+        id:
+          type: string
+          description: 用户唯一标识
+          example: "user_123456789"
+        phone:
+          type: string
+          description: 手机号
+          example: "13812345678"
+        username:
+          type: string
+          description: 用户名
+          example: "张三"
+        email:
+          type: string
+          format: email
+          description: 邮箱地址
+          example: "zhangsan@example.com"
+        avatar:
+          type: string
+          format: uri
+          description: 头像URL
+          example: "https://example.com/avatar.jpg"
+        createdAt:
+          type: string
+          format: date-time
+          description: 注册时间
+          example: "2024-01-17T10:30:00Z"
+        lastLoginAt:
+          type: string
+          format: date-time
+          description: 最后登录时间
+          example: "2024-01-17T15:45:00Z"
+        isActive:
+          type: boolean
+          description: 账户状态
+          example: true
+
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        message:
+          type: string
+          description: 错误信息
+          example: "请求参数错误"
+        code:
+          type: string
+          description: 错误代码
+          example: "INVALID_PARAMS"
+        details:
+          type: object
+          description: 详细错误信息
+          additionalProperties: true
+
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT访问令牌
+
+tags:
+  - name: 用户认证
+    description: 用户注册、登录、登出相关接口
+  - name: 用户管理
+    description: 用户信息管理相关接口

@@ -1,0 +1,657 @@
+openapi: 3.0.3
+info:
+  title: 淘贝课堂商品管理API
+  description: 商品展示、分类、店铺相关接口 (简化版Demo)
+  version: 1.0.0
+  contact:
+    name: 淘贝课堂开发团队
+    email: dev@taobei.demo
+
+servers:
+  - url: http://localhost:3001/api
+    description: 本地开发服务器
+  - url: https://api.taobei.demo
+    description: Demo演示服务器
+
+paths:
+  /products:
+    get:
+      summary: 获取商品列表
+      description: 获取商品列表，支持分页和基础筛选
+      tags:
+        - 商品管理
+      parameters:
+        - name: page
+          in: query
+          description: 页码
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+        - name: limit
+          in: query
+          description: 每页数量
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 50
+            default: 20
+        - name: category
+          in: query
+          description: 分类ID筛选
+          schema:
+            type: string
+        - name: shopId
+          in: query
+          description: 店铺ID筛选
+          schema:
+            type: string
+        - name: sortBy
+          in: query
+          description: 排序方式
+          schema:
+            type: string
+            enum: [price_asc, price_desc, sales_desc, rating_desc, created_desc]
+            default: created_desc
+      responses:
+        '200':
+          description: 获取成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: object
+                    properties:
+                      products:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/ProductSummary'
+                      pagination:
+                        $ref: '#/components/schemas/Pagination'
+
+  /products/{productId}:
+    get:
+      summary: 获取商品详情
+      description: 根据商品ID获取详细信息
+      tags:
+        - 商品管理
+      parameters:
+        - name: productId
+          in: path
+          required: true
+          description: 商品ID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 获取成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    $ref: '#/components/schemas/ProductDetail'
+        '404':
+          description: 商品不存在
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /categories:
+    get:
+      summary: 获取商品分类
+      description: 获取商品分类树形结构
+      tags:
+        - 商品分类
+      parameters:
+        - name: level
+          in: query
+          description: 分类层级筛选
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 3
+        - name: parentId
+          in: query
+          description: 父分类ID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 获取成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Category'
+
+  /categories/{categoryId}/products:
+    get:
+      summary: 获取分类下的商品
+      description: 根据分类ID获取该分类下的商品列表
+      tags:
+        - 商品分类
+      parameters:
+        - name: categoryId
+          in: path
+          required: true
+          description: 分类ID
+          schema:
+            type: string
+        - name: page
+          in: query
+          description: 页码
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+        - name: limit
+          in: query
+          description: 每页数量
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 50
+            default: 20
+      responses:
+        '200':
+          description: 获取成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: object
+                    properties:
+                      category:
+                        $ref: '#/components/schemas/Category'
+                      products:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/ProductSummary'
+                      pagination:
+                        $ref: '#/components/schemas/Pagination'
+
+  /shops:
+    get:
+      summary: 获取店铺列表
+      description: 获取店铺列表信息
+      tags:
+        - 店铺管理
+      parameters:
+        - name: page
+          in: query
+          description: 页码
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+        - name: limit
+          in: query
+          description: 每页数量
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 20
+            default: 10
+      responses:
+        '200':
+          description: 获取成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: object
+                    properties:
+                      shops:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Shop'
+                      pagination:
+                        $ref: '#/components/schemas/Pagination'
+
+  /shops/{shopId}:
+    get:
+      summary: 获取店铺详情
+      description: 根据店铺ID获取详细信息
+      tags:
+        - 店铺管理
+      parameters:
+        - name: shopId
+          in: path
+          required: true
+          description: 店铺ID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 获取成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    $ref: '#/components/schemas/ShopDetail'
+        '404':
+          description: 店铺不存在
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /shops/{shopId}/products:
+    get:
+      summary: 获取店铺商品
+      description: 根据店铺ID获取该店铺的商品列表
+      tags:
+        - 店铺管理
+      parameters:
+        - name: shopId
+          in: path
+          required: true
+          description: 店铺ID
+          schema:
+            type: string
+        - name: page
+          in: query
+          description: 页码
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+        - name: limit
+          in: query
+          description: 每页数量
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 50
+            default: 20
+      responses:
+        '200':
+          description: 获取成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: object
+                    properties:
+                      shop:
+                        $ref: '#/components/schemas/Shop'
+                      products:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/ProductSummary'
+                      pagination:
+                        $ref: '#/components/schemas/Pagination'
+
+components:
+  schemas:
+    ProductSummary:
+      type: object
+      description: 商品摘要信息 (用于列表展示)
+      properties:
+        id:
+          type: string
+          description: 商品ID
+          example: "prod_123456789"
+        title:
+          type: string
+          description: 商品标题
+          example: "Apple iPhone 17 Pro Max 256GB 银色"
+        price:
+          type: number
+          description: 商品价格 (分为单位)
+          example: 1119900
+        originalPrice:
+          type: number
+          description: 原价 (分为单位)
+          example: 1299900
+        image:
+          type: string
+          format: uri
+          description: 商品主图URL
+          example: "https://example.com/product/main.jpg"
+        sales:
+          type: integer
+          description: 销量
+          example: 1234
+        rating:
+          type: number
+          format: float
+          description: 商品评分
+          example: 4.8
+        reviewCount:
+          type: integer
+          description: 评价数量
+          example: 567
+        shopName:
+          type: string
+          description: 店铺名称
+          example: "Apple官方旗舰店"
+        tags:
+          type: array
+          items:
+            type: string
+          description: 商品标签
+          example: ["官方正品", "全国联保", "顺丰包邮"]
+
+    ProductDetail:
+      type: object
+      description: 商品详细信息
+      properties:
+        id:
+          type: string
+          description: 商品ID
+          example: "prod_123456789"
+        title:
+          type: string
+          description: 商品标题
+          example: "Apple iPhone 17 Pro Max 256GB 银色"
+        price:
+          type: number
+          description: 商品价格 (分为单位)
+          example: 1119900
+        originalPrice:
+          type: number
+          description: 原价 (分为单位)
+          example: 1299900
+        description:
+          type: string
+          description: 商品描述
+          example: "全新iPhone 17 Pro Max，搭载A18 Pro芯片..."
+        images:
+          type: array
+          items:
+            type: string
+            format: uri
+          description: 商品图片URL数组
+          example: [
+            "https://example.com/product/1.jpg",
+            "https://example.com/product/2.jpg"
+          ]
+        specifications:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductSpec'
+          description: 商品规格
+        stock:
+          type: integer
+          description: 库存数量
+          example: 999
+        sales:
+          type: integer
+          description: 销量
+          example: 1234
+        rating:
+          type: number
+          format: float
+          description: 商品评分
+          example: 4.8
+        reviewCount:
+          type: integer
+          description: 评价数量
+          example: 567
+        shop:
+          $ref: '#/components/schemas/Shop'
+        category:
+          $ref: '#/components/schemas/Category'
+        tags:
+          type: array
+          items:
+            type: string
+          description: 商品标签
+          example: ["官方正品", "全国联保", "顺丰包邮"]
+        createdAt:
+          type: string
+          format: date-time
+          description: 创建时间
+          example: "2024-01-17T10:30:00Z"
+        updatedAt:
+          type: string
+          format: date-time
+          description: 更新时间
+          example: "2024-01-17T15:45:00Z"
+
+    ProductSpec:
+      type: object
+      description: 商品规格
+      properties:
+        name:
+          type: string
+          description: 规格名称
+          example: "颜色"
+        options:
+          type: array
+          items:
+            $ref: '#/components/schemas/SpecOption'
+          description: 规格选项
+
+    SpecOption:
+      type: object
+      description: 规格选项
+      properties:
+        value:
+          type: string
+          description: 选项值
+          example: "银色"
+        price:
+          type: number
+          description: 价格差异 (分为单位)
+          example: 0
+        stock:
+          type: integer
+          description: 该规格库存
+          example: 100
+        image:
+          type: string
+          format: uri
+          description: 规格图片URL
+          example: "https://example.com/spec/silver.jpg"
+
+    Category:
+      type: object
+      description: 商品分类
+      properties:
+        id:
+          type: string
+          description: 分类ID
+          example: "cat_123456789"
+        name:
+          type: string
+          description: 分类名称
+          example: "手机通讯"
+        parentId:
+          type: string
+          description: 父分类ID
+          example: "cat_987654321"
+        level:
+          type: integer
+          description: 分类层级
+          example: 2
+        icon:
+          type: string
+          format: uri
+          description: 分类图标URL
+          example: "https://example.com/category/icon.png"
+        image:
+          type: string
+          format: uri
+          description: 分类图片URL
+          example: "https://example.com/category/banner.jpg"
+        sortOrder:
+          type: integer
+          description: 排序权重
+          example: 100
+        productCount:
+          type: integer
+          description: 商品数量
+          example: 156
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/Category'
+          description: 子分类
+
+    Shop:
+      type: object
+      description: 店铺信息
+      properties:
+        id:
+          type: string
+          description: 店铺ID
+          example: "shop_123456789"
+        name:
+          type: string
+          description: 店铺名称
+          example: "Apple官方旗舰店"
+        logo:
+          type: string
+          format: uri
+          description: 店铺Logo URL
+          example: "https://example.com/shop/logo.png"
+        rating:
+          type: number
+          format: float
+          description: 店铺评分
+          example: 4.9
+        productCount:
+          type: integer
+          description: 商品数量
+          example: 89
+        followerCount:
+          type: integer
+          description: 关注人数
+          example: 12345
+        isOfficial:
+          type: boolean
+          description: 是否官方店铺
+          example: true
+
+    ShopDetail:
+      allOf:
+        - $ref: '#/components/schemas/Shop'
+        - type: object
+          properties:
+            description:
+              type: string
+              description: 店铺描述
+              example: "Apple官方授权旗舰店，正品保证"
+            serviceRating:
+              $ref: '#/components/schemas/ServiceRating'
+            createdAt:
+              type: string
+              format: date-time
+              description: 创建时间
+              example: "2023-01-01T00:00:00Z"
+
+    ServiceRating:
+      type: object
+      description: 服务评分
+      properties:
+        description:
+          type: number
+          format: float
+          description: 描述相符
+          example: 4.9
+        service:
+          type: number
+          format: float
+          description: 服务态度
+          example: 4.8
+        logistics:
+          type: number
+          format: float
+          description: 物流服务
+          example: 4.9
+
+    Pagination:
+      type: object
+      description: 分页信息
+      properties:
+        page:
+          type: integer
+          description: 当前页码
+          example: 1
+        limit:
+          type: integer
+          description: 每页数量
+          example: 20
+        total:
+          type: integer
+          description: 总记录数
+          example: 156
+        totalPages:
+          type: integer
+          description: 总页数
+          example: 8
+        hasNext:
+          type: boolean
+          description: 是否有下一页
+          example: true
+        hasPrev:
+          type: boolean
+          description: 是否有上一页
+          example: false
+
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        message:
+          type: string
+          description: 错误信息
+          example: "请求参数错误"
+        code:
+          type: string
+          description: 错误代码
+          example: "INVALID_PARAMS"
+        details:
+          type: object
+          description: 详细错误信息
+          additionalProperties: true
+
+tags:
+  - name: 商品管理
+    description: 商品展示和管理相关接口
+  - name: 商品分类
+    description: 商品分类管理相关接口
+  - name: 店铺管理
+    description: 店铺信息管理相关接口

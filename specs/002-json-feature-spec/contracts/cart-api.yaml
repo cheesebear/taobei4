@@ -1,0 +1,623 @@
+openapi: 3.0.3
+info:
+  title: 淘贝课堂购物车API
+  description: 购物车管理相关接口 (简化版Demo)
+  version: 1.0.0
+  contact:
+    name: 淘贝课堂开发团队
+    email: dev@taobei.demo
+
+servers:
+  - url: http://localhost:3001/api
+    description: 本地开发服务器
+  - url: https://api.taobei.demo
+    description: Demo演示服务器
+
+paths:
+  /cart:
+    get:
+      summary: 获取购物车
+      description: 获取当前用户的购物车内容
+      tags:
+        - 购物车管理
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: 获取成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    $ref: '#/components/schemas/Cart'
+        '401':
+          description: 未授权
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    post:
+      summary: 添加商品到购物车
+      description: 将指定商品添加到购物车
+      tags:
+        - 购物车管理
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddToCartRequest'
+      responses:
+        '200':
+          description: 添加成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: "商品已添加到购物车"
+                  data:
+                    $ref: '#/components/schemas/CartItem'
+        '400':
+          description: 请求参数错误
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: 未授权
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: 商品不存在
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /cart/items/{itemId}:
+    put:
+      summary: 更新购物车商品
+      description: 更新购物车中指定商品的数量或规格
+      tags:
+        - 购物车管理
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: itemId
+          in: path
+          required: true
+          description: 购物车项ID
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCartItemRequest'
+      responses:
+        '200':
+          description: 更新成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: "购物车商品已更新"
+                  data:
+                    $ref: '#/components/schemas/CartItem'
+        '400':
+          description: 请求参数错误
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: 未授权
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: 购物车项不存在
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    delete:
+      summary: 删除购物车商品
+      description: 从购物车中删除指定商品
+      tags:
+        - 购物车管理
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: itemId
+          in: path
+          required: true
+          description: 购物车项ID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 删除成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: "商品已从购物车删除"
+        '401':
+          description: 未授权
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: 购物车项不存在
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /cart/batch:
+    put:
+      summary: 批量更新购物车
+      description: 批量更新购物车中多个商品的数量
+      tags:
+        - 购物车管理
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BatchUpdateCartRequest'
+      responses:
+        '200':
+          description: 更新成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: "购物车已批量更新"
+                  data:
+                    $ref: '#/components/schemas/Cart'
+        '400':
+          description: 请求参数错误
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: 未授权
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    delete:
+      summary: 批量删除购物车商品
+      description: 批量删除购物车中的多个商品
+      tags:
+        - 购物车管理
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BatchDeleteCartRequest'
+      responses:
+        '200':
+          description: 删除成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: "商品已批量删除"
+                  data:
+                    $ref: '#/components/schemas/Cart'
+        '400':
+          description: 请求参数错误
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: 未授权
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /cart/clear:
+    delete:
+      summary: 清空购物车
+      description: 清空当前用户的购物车
+      tags:
+        - 购物车管理
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: 清空成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: "购物车已清空"
+        '401':
+          description: 未授权
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /cart/count:
+    get:
+      summary: 获取购物车商品数量
+      description: 获取当前用户购物车中的商品总数量
+      tags:
+        - 购物车管理
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: 获取成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: object
+                    properties:
+                      count:
+                        type: integer
+                        description: 购物车商品总数量
+                        example: 5
+                      itemCount:
+                        type: integer
+                        description: 购物车商品种类数
+                        example: 3
+        '401':
+          description: 未授权
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  schemas:
+    Cart:
+      type: object
+      description: 购物车信息
+      properties:
+        id:
+          type: string
+          description: 购物车ID
+          example: "cart_123456789"
+        userId:
+          type: string
+          description: 用户ID
+          example: "user_123456789"
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/CartItem'
+          description: 购物车商品列表
+        summary:
+          $ref: '#/components/schemas/CartSummary'
+        updatedAt:
+          type: string
+          format: date-time
+          description: 最后更新时间
+          example: "2024-01-17T15:30:00Z"
+
+    CartItem:
+      type: object
+      description: 购物车商品项
+      properties:
+        id:
+          type: string
+          description: 购物车项ID
+          example: "item_123456789"
+        productId:
+          type: string
+          description: 商品ID
+          example: "prod_123456789"
+        product:
+          $ref: '#/components/schemas/CartProduct'
+        quantity:
+          type: integer
+          description: 商品数量
+          minimum: 1
+          example: 2
+        selectedSpecs:
+          type: object
+          description: 选中的商品规格
+          additionalProperties:
+            type: string
+          example:
+            颜色: "银色"
+            容量: "256GB"
+        unitPrice:
+          type: number
+          description: 单价 (分为单位)
+          example: 1119900
+        totalPrice:
+          type: number
+          description: 小计 (分为单位)
+          example: 2239800
+        selected:
+          type: boolean
+          description: 是否选中 (用于结算)
+          example: true
+        available:
+          type: boolean
+          description: 是否可用 (库存充足)
+          example: true
+        addedAt:
+          type: string
+          format: date-time
+          description: 添加时间
+          example: "2024-01-17T10:30:00Z"
+        updatedAt:
+          type: string
+          format: date-time
+          description: 更新时间
+          example: "2024-01-17T15:30:00Z"
+
+    CartProduct:
+      type: object
+      description: 购物车中的商品信息 (简化版)
+      properties:
+        id:
+          type: string
+          description: 商品ID
+          example: "prod_123456789"
+        title:
+          type: string
+          description: 商品标题
+          example: "Apple iPhone 17 Pro Max 256GB 银色"
+        image:
+          type: string
+          format: uri
+          description: 商品主图URL
+          example: "https://example.com/product/main.jpg"
+        price:
+          type: number
+          description: 当前价格 (分为单位)
+          example: 1119900
+        originalPrice:
+          type: number
+          description: 原价 (分为单位)
+          example: 1299900
+        stock:
+          type: integer
+          description: 库存数量
+          example: 999
+        shopName:
+          type: string
+          description: 店铺名称
+          example: "Apple官方旗舰店"
+        specifications:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductSpec'
+          description: 商品规格选项
+
+    ProductSpec:
+      type: object
+      description: 商品规格
+      properties:
+        name:
+          type: string
+          description: 规格名称
+          example: "颜色"
+        options:
+          type: array
+          items:
+            type: string
+          description: 可选值
+          example: ["银色", "金色", "深空灰色"]
+
+    CartSummary:
+      type: object
+      description: 购物车汇总信息
+      properties:
+        totalItems:
+          type: integer
+          description: 商品总数量
+          example: 5
+        selectedItems:
+          type: integer
+          description: 选中商品数量
+          example: 3
+        totalPrice:
+          type: number
+          description: 总价 (分为单位)
+          example: 3359700
+        selectedPrice:
+          type: number
+          description: 选中商品总价 (分为单位)
+          example: 2239800
+        discount:
+          type: number
+          description: 优惠金额 (分为单位)
+          example: 100000
+        finalPrice:
+          type: number
+          description: 最终价格 (分为单位)
+          example: 2139800
+
+    AddToCartRequest:
+      type: object
+      description: 添加到购物车请求
+      required:
+        - productId
+        - quantity
+      properties:
+        productId:
+          type: string
+          description: 商品ID
+          example: "prod_123456789"
+        quantity:
+          type: integer
+          description: 商品数量
+          minimum: 1
+          maximum: 99
+          example: 2
+        selectedSpecs:
+          type: object
+          description: 选中的商品规格
+          additionalProperties:
+            type: string
+          example:
+            颜色: "银色"
+            容量: "256GB"
+
+    UpdateCartItemRequest:
+      type: object
+      description: 更新购物车商品请求
+      properties:
+        quantity:
+          type: integer
+          description: 新的商品数量
+          minimum: 1
+          maximum: 99
+          example: 3
+        selectedSpecs:
+          type: object
+          description: 新的商品规格选择
+          additionalProperties:
+            type: string
+          example:
+            颜色: "金色"
+            容量: "512GB"
+        selected:
+          type: boolean
+          description: 是否选中
+          example: true
+
+    BatchUpdateCartRequest:
+      type: object
+      description: 批量更新购物车请求
+      required:
+        - items
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            required:
+              - itemId
+            properties:
+              itemId:
+                type: string
+                description: 购物车项ID
+                example: "item_123456789"
+              quantity:
+                type: integer
+                description: 新的商品数量
+                minimum: 1
+                maximum: 99
+                example: 3
+              selected:
+                type: boolean
+                description: 是否选中
+                example: true
+
+    BatchDeleteCartRequest:
+      type: object
+      description: 批量删除购物车商品请求
+      required:
+        - itemIds
+      properties:
+        itemIds:
+          type: array
+          items:
+            type: string
+          description: 要删除的购物车项ID列表
+          example: ["item_123456789", "item_987654321"]
+
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        message:
+          type: string
+          description: 错误信息
+          example: "请求参数错误"
+        code:
+          type: string
+          description: 错误代码
+          example: "INVALID_PARAMS"
+        details:
+          type: object
+          description: 详细错误信息
+          additionalProperties: true
+
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token authentication
+
+tags:
+  - name: 购物车管理
+    description: 购物车相关操作接口
