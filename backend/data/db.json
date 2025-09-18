@@ -1,0 +1,643 @@
+{
+  "users": [
+    {
+      "id": 1758098083224,
+      "phone": "13898083171",
+      "password": "$2b$10$TestPassword123!",
+      "nickname": "用户3171",
+      "avatar": "https://via.placeholder.com/100",
+      "createdAt": "2025-09-17T08:34:43.224Z",
+      "updatedAt": "2025-09-17T08:34:43.224Z"
+    },
+    {
+      "id": 1758098088696,
+      "phone": "13800138100",
+      "password": "$2b$10$hashedPassword123",
+      "nickname": "用户8100",
+      "avatar": "https://via.placeholder.com/100",
+      "createdAt": "2025-09-17T08:34:48.696Z",
+      "updatedAt": "2025-09-17T08:34:48.696Z"
+    },
+    {
+      "id": 1758098092822,
+      "phone": "13800138002",
+      "password": "$2b$10$123",
+      "nickname": "用户8002",
+      "avatar": "https://via.placeholder.com/100",
+      "createdAt": "2025-09-17T08:34:52.822Z",
+      "updatedAt": "2025-09-17T08:34:52.822Z"
+    },
+    {
+      "id": 1758098092838,
+      "phone": "13800138003",
+      "password": "$2b$10$Test123456",
+      "nickname": "用户8003",
+      "avatar": "https://via.placeholder.com/100",
+      "createdAt": "2025-09-17T08:34:52.838Z",
+      "updatedAt": "2025-09-17T08:34:52.838Z"
+    },
+    {
+      "id": 1758098092871,
+      "phone": "13800138005",
+      "password": "$2b$10$Test123456",
+      "nickname": "用户8005",
+      "avatar": "https://via.placeholder.com/100",
+      "createdAt": "2025-09-17T08:34:52.871Z",
+      "updatedAt": "2025-09-17T08:34:52.871Z"
+    },
+    {
+      "id": 1758098092901,
+      "phone": "13800138006",
+      "password": "$2b$10$Test123456",
+      "nickname": "用户8006",
+      "avatar": "https://via.placeholder.com/100",
+      "createdAt": "2025-09-17T08:34:52.901Z",
+      "updatedAt": "2025-09-17T08:34:52.901Z"
+    },
+    {
+      "id": 1758098092920,
+      "phone": "13800138001",
+      "password": "$2b$10$Test123456",
+      "nickname": "Updated Name 1758132994223",
+      "avatar": "https://via.placeholder.com/100",
+      "createdAt": "2025-09-17T08:34:52.920Z",
+      "updatedAt": "2025-09-17T18:16:34.240Z"
+    },
+    {
+      "id": 1758098263137,
+      "phone": "13898263075",
+      "password": "$2b$10$TestPassword123!",
+      "nickname": "用户3075",
+      "avatar": "https://via.placeholder.com/100",
+      "createdAt": "2025-09-17T08:37:43.137Z",
+      "updatedAt": "2025-09-17T08:37:43.137Z"
+    },
+    {
+      "id": 1758098263152,
+      "phone": "13800138200",
+      "password": "$2b$10$Test123456",
+      "nickname": "用户8200",
+      "avatar": "https://via.placeholder.com/100",
+      "createdAt": "2025-09-17T08:37:43.152Z",
+      "updatedAt": "2025-09-17T08:37:43.152Z"
+    },
+    {
+      "id": 1758098753689,
+      "phone": "13898753645",
+      "password": "$2b$10$TestPassword123!",
+      "nickname": "用户3645",
+      "avatar": "https://via.placeholder.com/100",
+      "createdAt": "2025-09-17T08:45:53.689Z",
+      "updatedAt": "2025-09-17T08:45:53.689Z"
+    },
+    {
+      "id": 1758098895282,
+      "phone": "13898895212",
+      "password": "$2b$10$TestPassword123!",
+      "nickname": "用户5212",
+      "avatar": "https://via.placeholder.com/100",
+      "createdAt": "2025-09-17T08:48:15.282Z",
+      "updatedAt": "2025-09-17T08:48:15.282Z"
+    },
+    {
+      "id": 1758098980609,
+      "phone": "13898980558",
+      "password": "$2b$10$TestPassword123!",
+      "nickname": "用户0558",
+      "avatar": "https://via.placeholder.com/100",
+      "createdAt": "2025-09-17T08:49:40.609Z",
+      "updatedAt": "2025-09-17T08:49:40.609Z"
+    },
+    {
+      "id": 1758099101351,
+      "phone": "13899101310",
+      "password": "$2b$10$TestPassword123!",
+      "nickname": "用户1310",
+      "avatar": "https://via.placeholder.com/100",
+      "createdAt": "2025-09-17T08:51:41.351Z",
+      "updatedAt": "2025-09-17T08:51:41.351Z"
+    },
+    {
+      "id": 1758099184058,
+      "phone": "13899184009",
+      "password": "$2b$10$TestPassword123!",
+      "nickname": "用户4009",
+      "avatar": "https://via.placeholder.com/100",
+      "createdAt": "2025-09-17T08:53:04.058Z",
+      "updatedAt": "2025-09-17T08:53:04.058Z"
+    },
+    {
+      "id": 1758099325463,
+      "phone": "13899325414",
+      "password": "$2b$10$TestPassword123!",
+      "nickname": "用户5414",
+      "avatar": "https://via.placeholder.com/100",
+      "createdAt": "2025-09-17T08:55:25.463Z",
+      "updatedAt": "2025-09-17T08:55:25.463Z"
+    },
+    {
+      "id": 1758099412961,
+      "phone": "13899412835",
+      "password": "$2b$10$TestPassword123!",
+      "nickname": "用户2835",
+      "avatar": "https://via.placeholder.com/100",
+      "createdAt": "2025-09-17T08:56:52.961Z",
+      "updatedAt": "2025-09-17T08:56:52.961Z"
+    },
+    {
+      "id": 1758100142746,
+      "phone": "13900000001",
+      "password": "$2b$10$HackedPassword123!",
+      "nickname": "Updated Name 1758100428862",
+      "avatar": "https://via.placeholder.com/100",
+      "createdAt": "2025-09-17T09:09:02.746Z",
+      "updatedAt": "2025-09-17T09:13:48.870Z"
+    },
+    {
+      "id": 1758100152531,
+      "phone": "13900000002",
+      "password": "$2b$10$Test123456",
+      "nickname": "用户0002",
+      "avatar": "https://via.placeholder.com/100",
+      "createdAt": "2025-09-17T09:09:12.531Z",
+      "updatedAt": "2025-09-17T09:09:12.531Z"
+    }
+  ],
+  "products": [
+    {
+      "id": 6,
+      "title": "Apple Watch Series 9",
+      "price": 2999,
+      "originalPrice": 3199,
+      "images": [
+        "https://via.placeholder.com/400x400?text=Apple+Watch+S9",
+        "https://via.placeholder.com/400x400?text=Apple+Watch+S9+2"
+      ],
+      "description": "S9芯片，全天候视网膜显示屏",
+      "category": "手机数码",
+      "subcategory": "智能穿戴",
+      "brand": "Apple",
+      "shopId": 1,
+      "stock": 150,
+      "sales": 567,
+      "rating": 4.7,
+      "reviewCount": 234,
+      "tags": [
+        "健康",
+        "运动"
+      ],
+      "specifications": {
+        "表盘尺寸": "45mm",
+        "表带材质": "运动型表带",
+        "颜色": "午夜色"
+      },
+      "createdAt": "2024-01-05T00:00:00.000Z",
+      "updatedAt": "2024-01-05T00:00:00.000Z"
+    },
+    {
+      "id": 3,
+      "title": "小米13 Ultra",
+      "price": 5999,
+      "originalPrice": 6499,
+      "image": "https://via.placeholder.com/400x400?text=小米13+Ultra",
+      "images": [
+        "https://via.placeholder.com/400x400?text=小米13+Ultra",
+        "https://via.placeholder.com/400x400?text=小米13+Ultra+2"
+      ],
+      "description": "徕卡影像，骁龙8 Gen2旗舰处理器",
+      "category": "手机数码",
+      "subcategory": "手机",
+      "brand": "小米",
+      "shopId": 2,
+      "stock": 200,
+      "sales": 2345,
+      "rating": 4.7,
+      "reviewCount": 1234,
+      "tags": [
+        "热销",
+        "拍照神器",
+        "5G"
+      ],
+      "specifications": {
+        "屏幕尺寸": "6.73英寸",
+        "存储容量": "256GB",
+        "颜色": "橄榄绿"
+      },
+      "createdAt": "2024-01-02T00:00:00.000Z",
+      "updatedAt": "2024-01-02T00:00:00.000Z"
+    },
+    {
+      "id": 10,
+      "title": "三星Galaxy Tab S9",
+      "price": 5999,
+      "originalPrice": 6999,
+      "images": [
+        "https://via.placeholder.com/400x400?text=Galaxy+Tab+S9",
+        "https://via.placeholder.com/400x400?text=Galaxy+Tab+S9+2"
+      ],
+      "description": "骁龙8 Gen2处理器，S Pen手写笔",
+      "category": "手机数码",
+      "subcategory": "平板电脑",
+      "brand": "三星",
+      "shopId": 6,
+      "stock": 80,
+      "sales": 456,
+      "rating": 4.5,
+      "reviewCount": 234,
+      "tags": [
+        "创作",
+        "娱乐"
+      ],
+      "specifications": {
+        "屏幕尺寸": "11英寸",
+        "存储容量": "256GB",
+        "颜色": "石墨色"
+      },
+      "createdAt": "2024-01-09T00:00:00.000Z",
+      "updatedAt": "2024-01-09T00:00:00.000Z"
+    },
+    {
+      "id": 9,
+      "title": "华为P60 Pro",
+      "price": 6988,
+      "originalPrice": 7988,
+      "images": [
+        "https://via.placeholder.com/400x400?text=华为P60+Pro",
+        "https://via.placeholder.com/400x400?text=华为P60+Pro+2"
+      ],
+      "description": "XMAGE影像，骁龙8+ Gen1处理器",
+      "category": "手机数码",
+      "subcategory": "手机",
+      "brand": "华为",
+      "shopId": 3,
+      "stock": 120,
+      "sales": 1567,
+      "rating": 4.6,
+      "reviewCount": 789,
+      "tags": [
+        "拍照",
+        "时尚"
+      ],
+      "specifications": {
+        "屏幕尺寸": "6.67英寸",
+        "存储容量": "256GB",
+        "颜色": "洛可可白"
+      },
+      "createdAt": "2024-01-08T00:00:00.000Z",
+      "updatedAt": "2024-01-08T00:00:00.000Z"
+    },
+    {
+      "id": 7,
+      "title": "戴尔XPS 13",
+      "price": 7999,
+      "originalPrice": 8999,
+      "images": [
+        "https://via.placeholder.com/400x400?text=Dell+XPS+13",
+        "https://via.placeholder.com/400x400?text=Dell+XPS+13+2"
+      ],
+      "description": "13代酷睿处理器，InfinityEdge显示屏",
+      "category": "电脑办公",
+      "subcategory": "笔记本电脑",
+      "brand": "戴尔",
+      "shopId": 4,
+      "stock": 40,
+      "sales": 234,
+      "rating": 4.5,
+      "reviewCount": 123,
+      "tags": [
+        "轻薄",
+        "便携"
+      ],
+      "specifications": {
+        "屏幕尺寸": "13.4英寸",
+        "处理器": "Intel i7-1355U",
+        "内存": "16GB",
+        "存储": "512GB SSD"
+      },
+      "createdAt": "2024-01-06T00:00:00.000Z",
+      "updatedAt": "2024-01-06T00:00:00.000Z"
+    },
+    {
+      "id": 4,
+      "title": "华为MateBook X Pro",
+      "price": 8999,
+      "originalPrice": 9999,
+      "image": "https://via.placeholder.com/400x400?text=MateBook+X+Pro",
+      "images": [
+        "https://via.placeholder.com/400x400?text=MateBook+X+Pro",
+        "https://via.placeholder.com/400x400?text=MateBook+X+Pro+2"
+      ],
+      "description": "13代酷睿处理器，3K触控全面屏",
+      "category": "电脑办公",
+      "subcategory": "笔记本电脑",
+      "brand": "华为",
+      "shopId": 3,
+      "stock": 80,
+      "sales": 678,
+      "rating": 4.6,
+      "reviewCount": 345,
+      "tags": [
+        "轻薄",
+        "商务"
+      ],
+      "specifications": {
+        "屏幕尺寸": "14.2英寸",
+        "处理器": "Intel i7-1360P",
+        "内存": "16GB",
+        "存储": "1TB SSD"
+      },
+      "createdAt": "2024-01-03T00:00:00.000Z",
+      "updatedAt": "2024-01-03T00:00:00.000Z"
+    },
+    {
+      "id": 5,
+      "title": "iPad Pro 12.9英寸",
+      "price": 8999,
+      "originalPrice": 9999,
+      "images": [
+        "https://via.placeholder.com/400x400?text=iPad+Pro+12.9",
+        "https://via.placeholder.com/400x400?text=iPad+Pro+12.9+2"
+      ],
+      "description": "M2芯片，Liquid Retina XDR显示屏",
+      "category": "手机数码",
+      "subcategory": "平板电脑",
+      "brand": "Apple",
+      "shopId": 1,
+      "stock": 60,
+      "sales": 890,
+      "rating": 4.8,
+      "reviewCount": 456,
+      "tags": [
+        "专业",
+        "创作"
+      ],
+      "specifications": {
+        "屏幕尺寸": "12.9英寸",
+        "存储容量": "256GB",
+        "颜色": "深空灰色"
+      },
+      "createdAt": "2024-01-04T00:00:00.000Z",
+      "updatedAt": "2024-01-04T00:00:00.000Z"
+    },
+    {
+      "id": 1,
+      "title": "iPhone 15 Pro Max",
+      "price": 9999,
+      "originalPrice": 10999,
+      "image": "https://via.placeholder.com/400x400?text=iPhone+15+Pro+Max",
+      "images": [
+        "https://via.placeholder.com/400x400?text=iPhone+15+Pro+Max",
+        "https://via.placeholder.com/400x400?text=iPhone+15+Pro+Max+2"
+      ],
+      "description": "最新款iPhone 15 Pro Max，搭载A17 Pro芯片",
+      "category": "手机数码",
+      "subcategory": "手机",
+      "brand": "Apple",
+      "shopId": 1,
+      "stock": 100,
+      "sales": 1234,
+      "rating": 4.8,
+      "reviewCount": 567,
+      "tags": [
+        "热销",
+        "新品",
+        "5G"
+      ],
+      "specifications": {
+        "屏幕尺寸": "6.7英寸",
+        "存储容量": "256GB",
+        "颜色": "深空黑色"
+      },
+      "createdAt": "2024-01-01T00:00:00.000Z",
+      "updatedAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+      "id": 8,
+      "title": "联想ThinkPad X1 Carbon",
+      "price": 12999,
+      "originalPrice": 14999,
+      "images": [
+        "https://via.placeholder.com/400x400?text=ThinkPad+X1",
+        "https://via.placeholder.com/400x400?text=ThinkPad+X1+2"
+      ],
+      "description": "商务旗舰，军工级品质",
+      "category": "电脑办公",
+      "subcategory": "笔记本电脑",
+      "brand": "联想",
+      "shopId": 5,
+      "stock": 30,
+      "sales": 345,
+      "rating": 4.8,
+      "reviewCount": 178,
+      "tags": [
+        "商务",
+        "耐用"
+      ],
+      "specifications": {
+        "屏幕尺寸": "14英寸",
+        "处理器": "Intel i7-1365U",
+        "内存": "32GB",
+        "存储": "1TB SSD"
+      },
+      "createdAt": "2024-01-07T00:00:00.000Z",
+      "updatedAt": "2024-01-07T00:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "title": "MacBook Pro 14英寸",
+      "price": 15999,
+      "originalPrice": 16999,
+      "image": "https://via.placeholder.com/400x400?text=MacBook+Pro+14",
+      "images": [
+        "https://via.placeholder.com/400x400?text=MacBook+Pro+14",
+        "https://via.placeholder.com/400x400?text=MacBook+Pro+14+2"
+      ],
+      "description": "搭载M3芯片的MacBook Pro，性能强劲",
+      "category": "电脑办公",
+      "subcategory": "笔记本电脑",
+      "brand": "Apple",
+      "shopId": 1,
+      "stock": 50,
+      "sales": 456,
+      "rating": 4.9,
+      "reviewCount": 234,
+      "tags": [
+        "专业",
+        "高性能"
+      ],
+      "specifications": {
+        "屏幕尺寸": "14英寸",
+        "处理器": "M3芯片",
+        "内存": "16GB",
+        "存储": "512GB SSD"
+      },
+      "createdAt": "2024-01-01T00:00:00.000Z",
+      "updatedAt": "2024-01-01T00:00:00.000Z"
+    }
+  ],
+  "cart": [],
+  "categories": [
+    {
+      "id": 1,
+      "name": "手机数码",
+      "icon": "mobile",
+      "subcategories": [
+        {
+          "id": 11,
+          "name": "手机",
+          "parentId": 1
+        },
+        {
+          "id": 12,
+          "name": "平板电脑",
+          "parentId": 1
+        },
+        {
+          "id": 13,
+          "name": "智能穿戴",
+          "parentId": 1
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "电脑办公",
+      "icon": "laptop",
+      "subcategories": [
+        {
+          "id": 21,
+          "name": "笔记本电脑",
+          "parentId": 2
+        },
+        {
+          "id": 22,
+          "name": "台式机",
+          "parentId": 2
+        },
+        {
+          "id": 23,
+          "name": "办公设备",
+          "parentId": 2
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "家用电器",
+      "icon": "home",
+      "subcategories": [
+        {
+          "id": 31,
+          "name": "大家电",
+          "parentId": 3
+        },
+        {
+          "id": 32,
+          "name": "小家电",
+          "parentId": 3
+        },
+        {
+          "id": 33,
+          "name": "厨房电器",
+          "parentId": 3
+        }
+      ]
+    }
+  ],
+  "shops": [
+    {
+      "id": 1,
+      "name": "Apple官方旗舰店",
+      "logo": "https://via.placeholder.com/100x100?text=Apple",
+      "description": "Apple官方授权店铺，正品保证",
+      "rating": 4.9,
+      "followers": 1000000,
+      "location": "北京市朝阳区",
+      "established": "2010-01-01",
+      "categories": [
+        "手机数码",
+        "电脑办公"
+      ],
+      "createdAt": "2024-01-01T00:00:00.000Z",
+      "updatedAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "name": "小米官方旗舰店",
+      "logo": "https://via.placeholder.com/100x100?text=小米",
+      "description": "小米生态链产品，性价比之选",
+      "rating": 4.8,
+      "followers": 800000,
+      "location": "北京市海淀区",
+      "established": "2011-04-06",
+      "categories": [
+        "手机数码",
+        "家用电器"
+      ],
+      "createdAt": "2024-01-01T00:00:00.000Z",
+      "updatedAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+      "id": 3,
+      "name": "华为官方旗舰店",
+      "logo": "https://via.placeholder.com/100x100?text=华为",
+      "description": "华为全系列产品，技术领先",
+      "rating": 4.7,
+      "followers": 900000,
+      "location": "深圳市南山区",
+      "established": "2009-03-15",
+      "categories": [
+        "手机数码",
+        "电脑办公"
+      ],
+      "createdAt": "2024-01-01T00:00:00.000Z",
+      "updatedAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+      "id": 4,
+      "name": "戴尔官方旗舰店",
+      "logo": "https://via.placeholder.com/100x100?text=Dell",
+      "description": "戴尔电脑专业销售，企业首选",
+      "rating": 4.6,
+      "followers": 500000,
+      "location": "上海市浦东新区",
+      "established": "2008-06-20",
+      "categories": [
+        "电脑办公"
+      ],
+      "createdAt": "2024-01-01T00:00:00.000Z",
+      "updatedAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+      "id": 5,
+      "name": "联想官方旗舰店",
+      "logo": "https://via.placeholder.com/100x100?text=联想",
+      "description": "联想ThinkPad商务本专家",
+      "rating": 4.8,
+      "followers": 700000,
+      "location": "北京市海淀区",
+      "established": "2005-05-01",
+      "categories": [
+        "电脑办公"
+      ],
+      "createdAt": "2024-01-01T00:00:00.000Z",
+      "updatedAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+      "id": 6,
+      "name": "三星官方旗舰店",
+      "logo": "https://via.placeholder.com/100x100?text=三星",
+      "description": "三星Galaxy系列，创新科技",
+      "rating": 4.5,
+      "followers": 600000,
+      "location": "广州市天河区",
+      "established": "2007-08-10",
+      "categories": [
+        "手机数码",
+        "家用电器"
+      ],
+      "createdAt": "2024-01-01T00:00:00.000Z",
+      "updatedAt": "2024-01-01T00:00:00.000Z"
+    }
+  ]
+}

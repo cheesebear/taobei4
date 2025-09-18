@@ -1,0 +1,522 @@
+/**
+ * 响应式设计样式
+ * 提供移动端适配和响应式布局
+ */
+
+/* 基础响应式断点 */
+:root {
+  --breakpoint-xs: 480px;
+  --breakpoint-sm: 768px;
+  --breakpoint-md: 1024px;
+  --breakpoint-lg: 1200px;
+  --breakpoint-xl: 1400px;
+
+  /* 响应式间距 */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+
+  /* 响应式字体大小 */
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-md: 16px;
+  --font-size-lg: 18px;
+  --font-size-xl: 20px;
+  --font-size-xxl: 24px;
+}
+
+/* 容器响应式 */
+.container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-4);
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0 var(--spacing-5);
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding: 0 var(--spacing-8);
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    padding: 0 var(--spacing-10);
+  }
+}
+
+/* 网格系统 */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 calc(-1 * var(--spacing-4));
+}
+
+.col {
+  flex: 1;
+  padding: 0 var(--spacing-4);
+  min-width: 0;
+}
+
+/* 响应式列 */
+.col-1 {
+  flex: 0 0 8.333333%;
+}
+.col-2 {
+  flex: 0 0 16.666667%;
+}
+.col-3 {
+  flex: 0 0 25%;
+}
+.col-4 {
+  flex: 0 0 33.333333%;
+}
+.col-5 {
+  flex: 0 0 41.666667%;
+}
+.col-6 {
+  flex: 0 0 50%;
+}
+.col-7 {
+  flex: 0 0 58.333333%;
+}
+.col-8 {
+  flex: 0 0 66.666667%;
+}
+.col-9 {
+  flex: 0 0 75%;
+}
+.col-10 {
+  flex: 0 0 83.333333%;
+}
+.col-11 {
+  flex: 0 0 91.666667%;
+}
+.col-12 {
+  flex: 0 0 100%;
+}
+
+/* 小屏幕响应式 */
+@media (max-width: 768px) {
+  .col-sm-1 {
+    flex: 0 0 8.333333%;
+  }
+  .col-sm-2 {
+    flex: 0 0 16.666667%;
+  }
+  .col-sm-3 {
+    flex: 0 0 25%;
+  }
+  .col-sm-4 {
+    flex: 0 0 33.333333%;
+  }
+  .col-sm-6 {
+    flex: 0 0 50%;
+  }
+  .col-sm-12 {
+    flex: 0 0 100%;
+  }
+
+  /* 移动端默认全宽 */
+  .col {
+    flex: 0 0 100%;
+  }
+}
+
+/* 超小屏幕响应式 */
+@media (max-width: 480px) {
+  .col-xs-12 {
+    flex: 0 0 100%;
+  }
+  .col-xs-6 {
+    flex: 0 0 50%;
+  }
+}
+
+/* 响应式文字 */
+.text-responsive {
+  font-size: clamp(var(--font-size-sm), 2.5vw, var(--font-size-lg));
+}
+
+.title-responsive {
+  font-size: clamp(var(--font-size-lg), 4vw, var(--font-size-xxl));
+}
+
+/* 响应式间距 */
+.spacing-responsive {
+  padding: clamp(var(--spacing-sm), 3vw, var(--spacing-lg));
+}
+
+.margin-responsive {
+  margin: clamp(var(--spacing-sm), 3vw, var(--spacing-lg));
+}
+
+/* 隐藏/显示工具类 */
+.hidden-xs {
+  display: block;
+}
+.hidden-sm {
+  display: block;
+}
+.hidden-md {
+  display: block;
+}
+.hidden-lg {
+  display: block;
+}
+
+@media (max-width: 480px) {
+  .hidden-xs {
+    display: none !important;
+  }
+  .visible-xs {
+    display: block !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .hidden-sm {
+    display: none !important;
+  }
+  .visible-sm {
+    display: block !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  .hidden-md {
+    display: none !important;
+  }
+  .visible-md {
+    display: block !important;
+  }
+}
+
+@media (min-width: 1200px) {
+  .hidden-lg {
+    display: none !important;
+  }
+  .visible-lg {
+    display: block !important;
+  }
+}
+
+/* 移动端优化 */
+@media (max-width: 768px) {
+  /* 触摸友好的按钮 */
+  .btn {
+    min-height: 44px;
+    padding: 12px 16px;
+    font-size: var(--font-size-md);
+  }
+
+  /* 表单元素优化 */
+  .form-control {
+    min-height: 44px;
+    font-size: 16px; /* 防止iOS缩放 */
+    padding: 12px;
+  }
+
+  /* 导航优化 */
+  .navbar {
+    padding: var(--spacing-sm);
+  }
+
+  .navbar-nav {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .navbar-nav .nav-item {
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+  }
+
+  /* 卡片优化 */
+  .card {
+    margin-bottom: var(--spacing-md);
+    border-radius: 8px;
+  }
+
+  .card-body {
+    padding: var(--spacing-md);
+  }
+
+  /* 表格响应式 */
+  .table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .table {
+    min-width: 600px;
+  }
+}
+
+/* 超小屏幕优化 */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 var(--spacing-xs);
+  }
+
+  .btn {
+    width: 100%;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .btn-group .btn {
+    width: auto;
+    margin-bottom: 0;
+  }
+
+  /* 模态框优化 */
+  .modal-dialog {
+    margin: var(--spacing-sm);
+    max-width: calc(100vw - 16px);
+  }
+
+  .modal-content {
+    border-radius: 8px;
+  }
+}
+
+/* 平板优化 */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container {
+    max-width: 960px;
+  }
+
+  .col-md-1 {
+    flex: 0 0 8.333333%;
+  }
+  .col-md-2 {
+    flex: 0 0 16.666667%;
+  }
+  .col-md-3 {
+    flex: 0 0 25%;
+  }
+  .col-md-4 {
+    flex: 0 0 33.333333%;
+  }
+  .col-md-6 {
+    flex: 0 0 50%;
+  }
+  .col-md-8 {
+    flex: 0 0 66.666667%;
+  }
+  .col-md-12 {
+    flex: 0 0 100%;
+  }
+}
+
+/* 大屏幕优化 */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+
+  .col-lg-1 {
+    flex: 0 0 8.333333%;
+  }
+  .col-lg-2 {
+    flex: 0 0 16.666667%;
+  }
+  .col-lg-3 {
+    flex: 0 0 25%;
+  }
+  .col-lg-4 {
+    flex: 0 0 33.333333%;
+  }
+  .col-lg-6 {
+    flex: 0 0 50%;
+  }
+  .col-lg-8 {
+    flex: 0 0 66.666667%;
+  }
+  .col-lg-9 {
+    flex: 0 0 75%;
+  }
+  .col-lg-12 {
+    flex: 0 0 100%;
+  }
+}
+
+/* 打印样式 */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  .container {
+    max-width: none;
+    padding: 0;
+  }
+
+  .btn {
+    display: none;
+  }
+
+  .card {
+    border: 1px solid #ddd;
+    page-break-inside: avoid;
+  }
+}
+
+/* 高对比度模式 */
+@media (prefers-contrast: high) {
+  .btn {
+    border: 2px solid;
+  }
+
+  .card {
+    border: 2px solid #333;
+  }
+}
+
+/* 减少动画模式 */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* 文字大小响应式 */
+@media (max-width: 768px) {
+  .text-lg {
+    font-size: var(--font-size-lg);
+  }
+  .text-xl {
+    font-size: var(--font-size-xl);
+  }
+  .text-2xl {
+    font-size: var(--font-size-2xl);
+  }
+  .text-3xl {
+    font-size: var(--font-size-3xl);
+  }
+}
+
+@media (max-width: 480px) {
+  .text-base {
+    font-size: var(--font-size-sm);
+  }
+  .text-lg {
+    font-size: var(--font-size-base);
+  }
+  .text-xl {
+    font-size: var(--font-size-lg);
+  }
+  .text-2xl {
+    font-size: var(--font-size-xl);
+  }
+  .text-3xl {
+    font-size: var(--font-size-2xl);
+  }
+}
+
+/* 间距响应式 */
+@media (max-width: 768px) {
+  .p-lg {
+    padding: var(--spacing-4);
+  }
+  .p-xl {
+    padding: var(--spacing-5);
+  }
+  .m-lg {
+    margin: var(--spacing-4);
+  }
+  .m-xl {
+    margin: var(--spacing-5);
+  }
+
+  .px-lg {
+    padding-left: var(--spacing-4);
+    padding-right: var(--spacing-4);
+  }
+  .py-lg {
+    padding-top: var(--spacing-4);
+    padding-bottom: var(--spacing-4);
+  }
+  .mx-lg {
+    margin-left: var(--spacing-4);
+    margin-right: var(--spacing-4);
+  }
+  .my-lg {
+    margin-top: var(--spacing-4);
+    margin-bottom: var(--spacing-4);
+  }
+}
+
+@media (max-width: 480px) {
+  .p-md {
+    padding: var(--spacing-3);
+  }
+  .p-lg {
+    padding: var(--spacing-4);
+  }
+  .p-xl {
+    padding: var(--spacing-4);
+  }
+  .m-md {
+    margin: var(--spacing-3);
+  }
+  .m-lg {
+    margin: var(--spacing-4);
+  }
+  .m-xl {
+    margin: var(--spacing-4);
+  }
+
+  .px-md {
+    padding-left: var(--spacing-3);
+    padding-right: var(--spacing-3);
+  }
+  .py-md {
+    padding-top: var(--spacing-3);
+    padding-bottom: var(--spacing-3);
+  }
+  .mx-md {
+    margin-left: var(--spacing-3);
+    margin-right: var(--spacing-3);
+  }
+  .my-md {
+    margin-top: var(--spacing-3);
+    margin-bottom: var(--spacing-3);
+  }
+}
+
+/* 深色模式支持 */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #1a1a1a;
+    --text-color: #ffffff;
+    --border-color: #333333;
+  }
+
+  body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+  }
+
+  .card {
+    background-color: #2d2d2d;
+    border-color: var(--border-color);
+  }
+
+  .btn {
+    background-color: #404040;
+    border-color: var(--border-color);
+    color: var(--text-color);
+  }
+}

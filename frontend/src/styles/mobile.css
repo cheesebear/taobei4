@@ -1,0 +1,508 @@
+/**
+ * 移动端专用样式
+ * 针对移动设备的特殊优化
+ */
+
+/* 移动端基础设置 */
+@media (max-width: 768px) {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .container {
+    padding: 0 var(--spacing-4);
+  }
+}
+
+/* 移动端导航 */
+@media (max-width: 768px) {
+  .mobile-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--color-bg-primary);
+    border-top: 1px solid var(--color-border-light);
+    padding: var(--spacing-2) 0;
+    z-index: 1000;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .mobile-nav-list {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .mobile-nav-item {
+    flex: 1;
+    text-align: center;
+  }
+
+  .mobile-nav-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-xs);
+    padding: var(--spacing-1);
+    transition: color var(--transition-base);
+  }
+
+  .mobile-nav-link:hover,
+  .mobile-nav-link.active {
+    color: var(--color-primary);
+  }
+
+  .mobile-nav-icon {
+    width: 24px;
+    height: 24px;
+    margin-bottom: var(--spacing-0-5);
+  }
+}
+
+/* 移动端头部 */
+@media (max-width: 768px) {
+  .mobile-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--color-bg-primary);
+    border-bottom: 1px solid var(--color-border-light);
+    padding: var(--spacing-3) var(--spacing-4);
+    z-index: 999;
+    box-shadow: var(--shadow-base);
+  }
+
+  .mobile-header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .mobile-header-title {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    margin: 0;
+  }
+
+  .mobile-header-back {
+    background: none;
+    border: none;
+    font-size: var(--font-size-2xl);
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .mobile-header-menu {
+    background: none;
+    border: none;
+    font-size: var(--font-size-2xl);
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    padding: 0;
+  }
+
+  /* 为固定头部留出空间 */
+  .main-content {
+    padding-top: 60px;
+  }
+}
+
+/* 移动端表单优化 */
+@media (max-width: 768px) {
+  .form-group {
+    margin-bottom: var(--spacing-4);
+  }
+
+  .form-label {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-2);
+    display: block;
+  }
+
+  .form-input,
+  .form-textarea,
+  .form-select {
+    width: 100%;
+    padding: var(--spacing-3) var(--spacing-4);
+    border: 1px solid var(--color-border-base);
+    border-radius: var(--border-radius-base);
+    font-size: var(--font-size-base);
+    background-color: var(--color-bg-primary);
+    transition: border-color var(--transition-base);
+  }
+
+  .form-input:focus,
+  .form-textarea:focus,
+  .form-select:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px var(--color-primary-light);
+  }
+
+  .form-button {
+    width: 100%;
+    padding: var(--spacing-4);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    border: none;
+    border-radius: var(--border-radius-base);
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    cursor: pointer;
+    transition: background-color var(--transition-base);
+  }
+
+  .form-button:hover {
+    background-color: var(--color-primary-dark);
+  }
+
+  .form-button:disabled {
+    background-color: var(--color-gray-400);
+    cursor: not-allowed;
+  }
+}
+
+/* 移动端卡片样式 */
+@media (max-width: 768px) {
+  .mobile-card {
+    background-color: var(--color-bg-primary);
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-4);
+    margin-bottom: var(--spacing-4);
+    box-shadow: var(--shadow-base);
+    border: 1px solid var(--color-border-light);
+  }
+
+  .mobile-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-3);
+    padding-bottom: var(--spacing-2);
+    border-bottom: 1px solid var(--color-border-lighter);
+  }
+
+  .mobile-card-title {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    margin: 0;
+  }
+
+  .mobile-card-subtitle {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    margin: var(--spacing-1) 0 0 0;
+  }
+
+  .mobile-card-content {
+    color: var(--color-text-secondary);
+    line-height: var(--line-height-relaxed);
+  }
+
+  .mobile-card-footer {
+    margin-top: var(--spacing-3);
+    padding-top: var(--spacing-2);
+    border-top: 1px solid var(--color-border-lighter);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .mobile-card-action {
+    background: none;
+    border: 1px solid var(--color-primary);
+    color: var(--color-primary);
+    padding: var(--spacing-2) var(--spacing-3);
+    border-radius: var(--border-radius-base);
+    font-size: var(--font-size-sm);
+    cursor: pointer;
+    transition: all var(--transition-base);
+  }
+
+  .mobile-card-action:hover {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+  }
+}
+
+/* 移动端列表 */
+@media (max-width: 768px) {
+  .mobile-list {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+
+  .mobile-list-item {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    border-bottom: 1px solid #f0f0f0;
+    text-decoration: none;
+    color: #333;
+    transition: background-color 0.2s ease;
+  }
+
+  .mobile-list-item:last-child {
+    border-bottom: none;
+  }
+
+  .mobile-list-item:active {
+    background-color: #f8f9fa;
+  }
+
+  .mobile-list-item-icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 12px;
+    border-radius: 8px;
+    background: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mobile-list-item-content {
+    flex: 1;
+  }
+
+  .mobile-list-item-title {
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0 0 4px 0;
+  }
+
+  .mobile-list-item-subtitle {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+  }
+
+  .mobile-list-item-arrow {
+    color: #ccc;
+    margin-left: 8px;
+  }
+}
+
+/* 移动端模态框 */
+@media (max-width: 768px) {
+  .mobile-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 2000;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  .mobile-modal-content {
+    background: #fff;
+    border-radius: 16px 16px 0 0;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+    animation: slideUp 0.3s ease;
+  }
+
+  .mobile-modal-header {
+    padding: 16px;
+    border-bottom: 1px solid #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .mobile-modal-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .mobile-modal-close {
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    color: #666;
+  }
+
+  .mobile-modal-body {
+    padding: 16px;
+  }
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+}
+
+/* 移动端搜索 */
+@media (max-width: 768px) {
+  .mobile-search {
+    position: relative;
+    margin-bottom: 16px;
+  }
+
+  .mobile-search-input {
+    width: 100%;
+    padding: 12px 16px 12px 44px;
+    border: 1px solid #ddd;
+    border-radius: 24px;
+    font-size: 16px;
+    background: #f8f9fa;
+  }
+
+  .mobile-search-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+  }
+
+  .mobile-search-clear {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+  }
+}
+
+/* 移动端标签页 */
+@media (max-width: 768px) {
+  .mobile-tabs {
+    display: flex;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .mobile-tab {
+    flex: 0 0 auto;
+    padding: 12px 20px;
+    text-decoration: none;
+    color: #666;
+    font-weight: 500;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .mobile-tab.active {
+    color: #007bff;
+    border-bottom-color: #007bff;
+  }
+
+  .mobile-tab-content {
+    padding: 16px;
+  }
+}
+
+/* 移动端加载状态 */
+@media (max-width: 768px) {
+  .mobile-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    color: #666;
+  }
+
+  .mobile-loading-spinner {
+    width: 32px;
+    height: 32px;
+    border: 3px solid #f0f0f0;
+    border-top: 3px solid #007bff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 16px;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .mobile-loading-text {
+    font-size: 14px;
+  }
+}
+
+/* 移动端空状态 */
+@media (max-width: 768px) {
+  .mobile-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    color: #666;
+    text-align: center;
+  }
+
+  .mobile-empty-icon {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 16px;
+    opacity: 0.5;
+  }
+
+  .mobile-empty-title {
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0 0 8px 0;
+  }
+
+  .mobile-empty-subtitle {
+    font-size: 14px;
+    color: #999;
+    margin: 0;
+  }
+}
+
+/* 移动端手势支持 */
+@media (max-width: 768px) {
+  .swipeable {
+    touch-action: pan-x;
+  }
+
+  .pull-to-refresh {
+    touch-action: pan-y;
+  }
+}
