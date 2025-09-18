@@ -252,7 +252,25 @@
 }
 
 /* 响应式设计 */
-@media (max-width: 1200px) {
+/* 添加最小宽度限制防止过度压缩 */
+.tb-header {
+  min-width: 320px;
+}
+
+.tb-container {
+  min-width: 0; /* 允许flex子元素收缩 */
+}
+
+/* 大屏幕 1200px+ */
+@media (min-width: 1201px) {
+  .tb-container {
+    max-width: 1200px;
+    padding: 0 20px;
+  }
+}
+
+/* 中大屏幕 992px - 1200px */
+@media (max-width: 1200px) and (min-width: 993px) {
   .tb-container {
     padding: 0 15px;
   }
@@ -263,33 +281,205 @@
   
   .tb-search-area {
     max-width: 500px;
+    min-width: 300px;
+  }
+  
+  .tb-right-area {
+    gap: 15px;
+  }
+  
+  .tb-qr-code img {
+    width: 50px;
+    height: 50px;
   }
 }
 
-@media (max-width: 768px) {
-  .tb-top-nav,
-  .tb-second-nav {
-    display: none;
+/* 中屏幕 768px - 992px */
+@media (max-width: 992px) and (min-width: 769px) {
+  .tb-container {
+    padding: 0 15px;
   }
   
   .tb-main-nav-content {
-    flex-direction: column;
     gap: 15px;
   }
   
   .tb-search-area {
-    max-width: 100%;
-    width: 100%;
+    max-width: 400px;
+    min-width: 250px;
+    flex: 1;
   }
   
   .tb-right-area {
+    gap: 10px;
+    flex-shrink: 1;
+  }
+  
+  .tb-qr-area {
+    display: none; /* 隐藏二维码区域节省空间 */
+  }
+  
+  .tb-user-tools {
+    gap: 5px;
+  }
+  
+  .tb-tool-link {
+    font-size: 11px;
+  }
+  
+  .tb-nav-menu-content {
+    gap: 20px;
+  }
+}
+
+/* 小屏幕 576px - 768px */
+@media (max-width: 768px) and (min-width: 577px) {
+  .tb-top-nav {
+    display: none;
+  }
+  
+  .tb-second-nav {
+    height: 35px;
+    line-height: 35px;
+  }
+  
+  .tb-main-nav {
+    padding: 15px 0;
+  }
+  
+  .tb-main-nav-content {
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: space-between;
+  }
+  
+  .tb-logo {
+    order: 1;
+  }
+  
+  .tb-logo img {
+    height: 45px;
+  }
+  
+  .tb-search-area {
+    order: 3;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+  
+  .tb-right-area {
+    order: 2;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+  
+  .tb-qr-area {
+    display: none;
+  }
+  
+  .tb-user-tools {
     flex-direction: row;
-    justify-content: center;
+    gap: 8px;
+  }
+  
+  .tb-tool-link {
+    font-size: 10px;
+    white-space: nowrap;
   }
   
   .tb-nav-menu-content {
     flex-wrap: wrap;
     gap: 15px;
     justify-content: center;
+  }
+}
+
+/* 超小屏幕 ≤576px */
+@media (max-width: 576px) {
+  .tb-top-nav,
+  .tb-second-nav {
+    display: none;
+  }
+  
+  .tb-container {
+    padding: 0 10px;
+  }
+  
+  .tb-main-nav {
+    padding: 10px 0;
+  }
+  
+  .tb-main-nav-content {
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
+  
+  .tb-logo {
+    text-align: center;
+  }
+  
+  .tb-logo img {
+    height: 40px;
+  }
+  
+  .tb-search-area {
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .tb-search-tabs {
+    justify-content: center;
+    margin-bottom: 8px;
+  }
+  
+  .tb-search-tab {
+    padding: 4px 10px;
+    font-size: 12px;
+  }
+  
+  .tb-search-input {
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+  
+  .tb-search-btn {
+    padding: 6px 15px;
+    font-size: 13px;
+  }
+  
+  .tb-search-suggest {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .tb-right-area {
+    justify-content: center;
+    gap: 15px;
+  }
+  
+  .tb-qr-area {
+    display: none;
+  }
+  
+  .tb-user-tools {
+    flex-direction: row;
+    gap: 10px;
+  }
+  
+  .tb-tool-link {
+    font-size: 11px;
+  }
+  
+  .tb-nav-menu-content {
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+  
+  .tb-nav-item {
+    font-size: 13px;
   }
 }
