@@ -1,0 +1,295 @@
+/* 淘宝头部样式 */
+.tb-header {
+  width: 100%;
+  background: #fff;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+/* 顶部导航栏 */
+.tb-top-nav {
+  background: #f5f5f5;
+  height: 35px;
+  line-height: 35px;
+  font-size: 12px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.tb-container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.tb-top-nav .tb-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tb-top-left {
+  color: #666;
+}
+
+.tb-top-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.tb-link {
+  color: #666;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.tb-link:hover {
+  color: #ff6600;
+}
+
+/* 第二行导航 */
+.tb-second-nav {
+  background: #fff;
+  height: 40px;
+  line-height: 40px;
+  font-size: 12px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.tb-second-nav-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.tb-cart-icon,
+.tb-fav-icon {
+  margin-right: 4px;
+}
+
+/* 主导航区域 */
+.tb-main-nav {
+  background: #fff;
+  padding: 20px 0;
+}
+
+.tb-main-nav-content {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+/* Logo */
+.tb-logo {
+  flex-shrink: 0;
+}
+
+.tb-logo img {
+  height: 59px;
+  width: auto;
+}
+
+/* 搜索区域 */
+.tb-search-area {
+  flex: 1;
+  max-width: 100%;
+}
+
+.tb-search-tabs {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.tb-search-tab {
+  background: none;
+  border: none;
+  padding: 5px 15px;
+  font-size: 14px;
+  color: #666;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+}
+
+.tb-search-tab.active {
+  color: #ff6600;
+  border-bottom-color: #ff6600;
+}
+
+.tb-search-box {
+  display: flex;
+  border: 2px solid #ff6600;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.tb-search-input {
+  flex: 1;
+  padding: 8px 12px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+}
+
+.tb-search-btn {
+  background: #ff6600;
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.tb-search-btn:hover {
+  background: #e55a00;
+}
+
+.tb-search-suggest {
+  display: flex;
+  gap: 15px;
+  font-size: 12px;
+}
+
+.tb-search-suggest a {
+  color: #666;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.tb-search-suggest a:hover {
+  color: #ff6600;
+}
+
+/* 右侧功能区域 */
+.tb-right-area {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-shrink: 0;
+}
+
+.tb-qr-area {
+  text-align: center;
+}
+
+.tb-qr-code img {
+  width: 60px;
+  height: 60px;
+  border: 1px solid #e5e5e5;
+}
+
+.tb-qr-code p {
+  margin: 5px 0 0 0;
+  font-size: 12px;
+  color: #666;
+}
+
+.tb-user-tools {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tb-tool-link {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #666;
+  text-decoration: none;
+  font-size: 12px;
+  transition: color 0.2s;
+}
+
+.tb-tool-link:hover {
+  color: #ff6600;
+}
+
+.tb-icon {
+  font-size: 16px;
+}
+
+/* 导航菜单 */
+.tb-nav-menu {
+  background: #fff;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 10px 0;
+}
+
+.tb-nav-menu-content {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.tb-nav-item {
+  color: #333;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 0;
+  transition: color 0.2s;
+  position: relative;
+}
+
+.tb-nav-item:hover {
+  color: #ff6600;
+}
+
+.tb-nav-item.active {
+  color: #ff6600;
+}
+
+.tb-nav-item.active::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 2px;
+  background: #ff6600;
+}
+
+/* 响应式设计 */
+@media (max-width: 1200px) {
+  .tb-container {
+    padding: 0 15px;
+  }
+  
+  .tb-main-nav-content {
+    gap: 20px;
+  }
+  
+  .tb-search-area {
+    max-width: 500px;
+  }
+}
+
+@media (max-width: 768px) {
+  .tb-top-nav,
+  .tb-second-nav {
+    display: none;
+  }
+  
+  .tb-main-nav-content {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .tb-search-area {
+    max-width: 100%;
+    width: 100%;
+  }
+  
+  .tb-right-area {
+    flex-direction: row;
+    justify-content: center;
+  }
+  
+  .tb-nav-menu-content {
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+  }
+}

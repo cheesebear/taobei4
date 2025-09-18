@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import BannerCarousel from '../components/BannerCarousel';
 import CategoryNav from '../components/CategoryNav';
 import ProductRecommendation from '../components/ProductRecommendation';
@@ -19,6 +20,11 @@ const HomePage: React.FC<HomePageProps> = ({
   onLogout,
   onRegister
 }) => {
+  const navigate = useNavigate();
+
+  const handleProductClick = (product: any) => {
+    navigate(`/product/${product.id}`);
+  };
   // 模拟商品数据
   const mockProducts = [
     {
@@ -55,23 +61,34 @@ const HomePage: React.FC<HomePageProps> = ({
 
   return (
     <div className="bg-gray-50">
-      {/* 分类导航 */}
-      <CategoryNav />
-      
-      {/* 用户面板 */}
-      <UserPanel 
-        isLoggedIn={isLoggedIn}
-        userName={username}
-        onLogin={onLogin}
-        onLogout={onLogout}
-        onRegister={onRegister}
-      />
-      
-      {/* 轮播图 */}
-      <BannerCarousel />
-      
-      {/* 商品推荐 */}
-      <ProductRecommendation products={mockProducts} />
+      <div className="tb-container">
+        <div className="tb-content-wrapper">
+          {/* 左侧分类导航 */}
+          <div className="tb-left-sidebar">
+            <CategoryNav />
+          </div>
+          
+          {/* 中间内容区域 */}
+          <div className="tb-center-content">
+            {/* 轮播图 */}
+            <BannerCarousel />
+            
+            {/* 商品推荐 */}
+            <ProductRecommendation products={mockProducts} onProductClick={handleProductClick} />
+          </div>
+          
+          {/* 右侧用户面板 */}
+          <div className="tb-right-sidebar">
+            <UserPanel 
+              isLoggedIn={isLoggedIn}
+              userName={username}
+              onLogin={onLogin}
+              onLogout={onLogout}
+              onRegister={onRegister}
+            />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

@@ -30,7 +30,7 @@
 /* 容器响应式 */
 .container {
   width: 100%;
-  max-width: var(--container-max-width);
+  max-width: 100%;
   margin: 0 auto;
   padding: 0 var(--spacing-4);
 }
@@ -292,7 +292,7 @@
 /* 平板优化 */
 @media (min-width: 769px) and (max-width: 1024px) {
   .container {
-    max-width: 960px;
+    max-width: 100%;
   }
 
   .col-md-1 {
@@ -321,7 +321,7 @@
 /* 大屏幕优化 */
 @media (min-width: 1200px) {
   .container {
-    max-width: 1140px;
+    max-width: 100%;
   }
 
   .col-lg-1 {

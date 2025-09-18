@@ -1,5 +1,6 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
+import './TaobaoHeader.css';
 
 interface TaobaoHeaderProps {
   isLoggedIn?: boolean;
@@ -16,7 +17,8 @@ const TaobaoHeader: React.FC<TaobaoHeaderProps> = React.memo(({
   onLogout,
   onSearch 
 }) => {
-  const [searchQuery, setSearchQuery] = React.useState('');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchType, setSearchType] = useState('宝贝');
 
   const handleSearch = useCallback(() => {
     if (onSearch && searchQuery.trim()) {
@@ -63,7 +65,6 @@ const TaobaoHeader: React.FC<TaobaoHeaderProps> = React.memo(({
                 <Link to='/login' className='tb-link'>
                   亲，请登录
                 </Link>
-                <span className='tb-divider'>|</span>
                 <Link to='/register' className='tb-link'>
                   免费注册
                 </Link>
@@ -71,54 +72,62 @@ const TaobaoHeader: React.FC<TaobaoHeaderProps> = React.memo(({
             ) : (
               <>
                 <span className='tb-link'>Hi! {userName}</span>
-                <span className='tb-divider'>|</span>
                 <a href='#' className='tb-link' onClick={(e) => { e.preventDefault(); onLogout && onLogout(); }}>
                   退出登录
                 </a>
               </>
             )}
-            <span className='tb-divider'>|</span>
-            <Link to='/user' className='tb-link'>
-              我的淘贝
-            </Link>
-            <span className='tb-divider'>|</span>
-            <Link to='/cart' className='tb-link'>
-              购物车
-            </Link>
-            <span className='tb-divider'>|</span>
-            <Link to='/user' className='tb-link'>
-              收藏夹
-            </Link>
-            <span className='tb-divider'>|</span>
             <a href='#' className='tb-link'>
-              商品分类
+              网页无障碍
             </a>
-            <span className='tb-divider'>|</span>
             <a href='#' className='tb-link'>
-              卖家中心
+              切换企业版
             </a>
-            <span className='tb-divider'>|</span>
-            <a href='#' className='tb-link'>
-              联系客服
-            </a>
-            <span className='tb-divider'>|</span>
-            <a href='#' className='tb-link'>
-              网站导航
-            </a>
+            <span className='tb-link'>选择主题</span>
+            <span className='tb-link'>Language</span>
           </div>
         </div>
       </div>
+      
+      {/* 第二行导航 */}
+      <div className='tb-second-nav'>
+        <div className='tb-container'>
+          <div className='tb-second-nav-content'>
+            <Link to='/user' className='tb-link'>
+              已买到的宝贝
+            </Link>
+            <Link to='/user' className='tb-link'>
+              我的淘宝
+            </Link>
+            <Link to='/cart' className='tb-link'>
+              <span className='tb-cart-icon'>🛒</span> 购物车
+            </Link>
+            <Link to='/user' className='tb-link'>
+              <span className='tb-fav-icon'>⭐</span> 收藏夹
+            </Link>
+            <a href='#' className='tb-link'>
+              免费开店
+            </a>
+            <a href='#' className='tb-link'>
+              千牛卖家中心
+            </a>
+            <a href='#' className='tb-link'>
+              帮助中心
+            </a>
+          </div>
+         </div>
+       </div>
 
       {/* 主导航区域 */}
-      <div className='tb-main-header'>
+      <div className='tb-main-nav'>
         <div className='tb-container'>
-          <div className='tb-header-content'>
+          <div className='tb-main-nav-content'>
             {/* Logo */}
             <div className='tb-logo'>
               <Link to='/'>
                 <img
                   src='https://img.alicdn.com/tfs/TB1_uT8a5ERMeJjSspiXXbZLFXa-143-59.png'
-                  alt='淘贝课堂'
+                  alt='淘宝网'
                   onError={handleLogoError}
                 />
               </Link>
@@ -126,39 +135,62 @@ const TaobaoHeader: React.FC<TaobaoHeaderProps> = React.memo(({
 
             {/* 搜索区域 */}
             <div className='tb-search-area'>
+              <div className='tb-search-tabs'>
+                <button 
+                  className={`tb-search-tab ${searchType === '宝贝' ? 'active' : ''}`}
+                  onClick={() => setSearchType('宝贝')}
+                >
+                  宝贝
+                </button>
+                <button 
+                  className={`tb-search-tab ${searchType === '店铺' ? 'active' : ''}`}
+                  onClick={() => setSearchType('店铺')}
+                >
+                  店铺
+                </button>
+              </div>
               <div className='tb-search-box'>
                 <input
                   type='text'
-                  className='tb-search-input'
-                  placeholder='搜索 淘贝课堂'
+                  placeholder='搜索 淘宝 商品/店铺/品牌'
                   value={searchQuery}
                   onChange={handleInputChange}
                   onKeyDown={handleKeyPress}
+                  className='tb-search-input'
                 />
-                <button className='tb-search-btn' onClick={handleSearch}>
+                <button onClick={handleSearch} className='tb-search-btn'>
                   搜索
                 </button>
               </div>
-              <div className='tb-search-suggestions'>
+              {/* 搜索建议 */}
+              <div className='tb-search-suggest'>
                 <a href='#'>连衣裙</a>
                 <a href='#'>手机</a>
                 <a href='#'>电脑</a>
                 <a href='#'>家居</a>
                 <a href='#'>美妆</a>
                 <a href='#'>运动</a>
-                <a href='#'>数码</a>
                 <a href='#'>母婴</a>
               </div>
             </div>
 
-            {/* 二维码区域 */}
-            <div className='tb-qr-area'>
-              <div className='tb-qr-code'>
-                <img
-                  src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjYwIiBoZWlnaHQ9IjYwIiBmaWxsPSIjRjVGNUY1IiBzdHJva2U9IiNEREQiLz4KPHN2ZyB4PSIxMCIgeT0iMTAiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+CjxyZWN0IHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgZmlsbD0iIzMzMyIvPgo8cmVjdCB4PSI1IiB5PSI1IiB3aWR0aD0iMzAiIGhlaWdodD0iMzAiIGZpbGw9IndoaXRlIi8+CjxyZWN0IHg9IjEwIiB5PSIxMCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjMzMzIi8+CjxyZWN0IHg9IjE1IiB5PSIxNSIgd2lkdGg9IjEwIiBoZWlnaHQ9IjEwIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4KPC9zdmc+'
-                  alt='手机淘宝'
-                />
-                <span>手机淘宝</span>
+            {/* 右侧功能区域 */}
+            <div className='tb-right-area'>
+              <div className='tb-qr-area'>
+                <div className='tb-qr-code'>
+                  <img src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjYwIiBoZWlnaHQ9IjYwIiBmaWxsPSIjRjVGNUY1Ii8+Cjx0ZXh0IHg9IjMwIiB5PSIzNSIgZmlsbD0iIzk5OTk5OSIgZm9udC1zaXplPSIxMiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+UVLnoIE8L3RleHQ+Cjwvc3ZnPg==' alt='二维码' />
+                  <p>手机淘宝</p>
+                </div>
+              </div>
+              <div className='tb-user-tools'>
+                <Link to='/user' className='tb-tool-link'>
+                  <span className='tb-icon'>👤</span>
+                  <span>会员中心</span>
+                </Link>
+                <Link to='/cart' className='tb-tool-link'>
+                  <span className='tb-icon'>🛒</span>
+                  <span>购物车</span>
+                </Link>
               </div>
             </div>
           </div>
@@ -168,36 +200,33 @@ const TaobaoHeader: React.FC<TaobaoHeaderProps> = React.memo(({
       {/* 导航菜单 */}
       <div className='tb-nav-menu'>
         <div className='tb-container'>
-          <div className='tb-nav-links'>
-            <Link to='/' className='tb-nav-link'>
+          <div className='tb-nav-menu-content'>
+            <Link to='/' className='tb-nav-item active'>
               首页
             </Link>
-            <a href='#' className='tb-nav-link'>
-              课程分类
+            <a href='#' className='tb-nav-item'>
+              天猫
             </a>
-            <a href='#' className='tb-nav-link'>
-              热门课程
+            <a href='#' className='tb-nav-item'>
+              聚划算
             </a>
-            <a href='#' className='tb-nav-link'>
-              免费课程
+            <a href='#' className='tb-nav-item'>
+              天猫超市
             </a>
-            <a href='#' className='tb-nav-link'>
-              直播课堂
+            <a href='#' className='tb-nav-item'>
+              天猫国际
             </a>
-            <a href='#' className='tb-nav-link'>
-              学习路径
+            <a href='#' className='tb-nav-item'>
+              飞猪旅行
             </a>
-            <a href='#' className='tb-nav-link'>
-              实战项目
+            <a href='#' className='tb-nav-item'>
+              苏宁易购
             </a>
-            <a href='#' className='tb-nav-link'>
-              认证考试
+            <a href='#' className='tb-nav-item'>
+              淘宝心选
             </a>
-            <a href='#' className='tb-nav-link'>
-              企业培训
-            </a>
-            <a href='#' className='tb-nav-link'>
-              帮助中心
+            <a href='#' className='tb-nav-item'>
+              1688
             </a>
           </div>
         </div>

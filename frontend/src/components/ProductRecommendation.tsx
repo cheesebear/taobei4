@@ -3,18 +3,23 @@ import React, { useCallback, useMemo } from 'react';
 interface Product {
   id: number;
   title: string;
-  price: string;
+  price: number | string;
+  originalPrice?: number;
   image: string;
+  sales?: number;
+  rating?: number;
+  shop?: string;
   tag?: string;
 }
 
 interface ProductRecommendationProps {
+  products?: Product[];
   onProductClick?: (product: Product) => void;
 }
 
 const ProductRecommendation: React.FC<ProductRecommendationProps> = React.memo(
-  ({ onProductClick }) => {
-    const recommendedProducts: Product[] = useMemo(
+  ({ products, onProductClick }) => {
+    const defaultProducts: Product[] = useMemo(
       () => [
         {
           id: 1,
@@ -67,6 +72,8 @@ const ProductRecommendation: React.FC<ProductRecommendationProps> = React.memo(
       ],
       []
     );
+
+    const recommendedProducts = products || defaultProducts;
 
     const handleProductClick = useCallback(
       (product: Product) => {
@@ -137,8 +144,12 @@ const ProductRecommendation: React.FC<ProductRecommendationProps> = React.memo(
                 onError={e => handleImageError(e, product)}
               />
               <div className='tb-product-info'>
-                <div className='tb-product-price'>{product.price}</div>
-                <div className='tb-product-tag'>{product.tag}</div>
+                <div className='tb-product-price'>
+                  {typeof product.price === 'number' ? `¥${product.price}` : product.price}
+                </div>
+                <div className='tb-product-title'>{product.title}</div>
+                {product.tag && <div className='tb-product-tag'>{product.tag}</div>}
+                {product.shop && <div className='tb-product-shop'>{product.shop}</div>}
               </div>
             </div>
           ))}

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import TaobaoHeader from '../components/TaobaoHeader';
-import TaobaoFooter from '../components/TaobaoFooter';
+import { useNavigate, Link } from 'react-router-dom';
+import { Eye, EyeOff, User, Lock, Phone, Mail, Shield } from 'lucide-react';
 
 interface RegisterPageProps {
   onRegister: (username: string) => void;
@@ -72,8 +71,6 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onRegister }) => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <TaobaoHeader isLoggedIn={false} username="" onLogin={() => {}} onLogout={() => {}} />
-      
       <div className="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full space-y-8">
           <div>
@@ -235,8 +232,6 @@ const RegisterPage: React.FC<RegisterPageProps> = ({ onRegister }) => {
           </form>
         </div>
       </div>
-      
-      <TaobaoFooter />
     </div>
   );
 };

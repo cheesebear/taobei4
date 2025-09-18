@@ -26,9 +26,10 @@ export abstract class BaseService {
     params?: Record<string, any>
   ): Promise<T> {
     try {
-      const response = await apiClient.get<T>(`${this.baseUrl}${endpoint}`, {
-        params,
-      });
+      const response = await apiClient.get<T>(
+        `${this.baseUrl}${endpoint}`,
+        { params }
+      );
       return response.data;
     } catch (error) {
       throw this.handleError(error, `GET ${this.baseUrl}${endpoint}`);
@@ -78,7 +79,10 @@ export abstract class BaseService {
   /**
    * DELETE请求
    */
-  protected async delete<T>(endpoint: string, config?: any): Promise<T> {
+  protected async delete<T>(
+    endpoint: string,
+    config?: any
+  ): Promise<T> {
     try {
       const response = await apiClient.delete<T>(
         `${this.baseUrl}${endpoint}`,
@@ -104,10 +108,7 @@ export abstract class BaseService {
       );
       return response;
     } catch (error) {
-      throw this.handleError(
-        error,
-        `GET ${this.baseUrl}${endpoint} (paginated)`
-      );
+      throw this.handleError(error, `GET ${this.baseUrl}${endpoint} (paginated)`);
     }
   }
 
@@ -117,15 +118,15 @@ export abstract class BaseService {
   protected handleError(error: any, context: string): ApiError {
     // 记录错误日志
     log.error(`API Error in ${context}:`, error, this.constructor.name);
-
+    
     // 使用统一的错误处理器
     const handledError = errorHandler.handleError(error, context);
-
+    
     // 如果是ApiError，直接抛出
     if (handledError instanceof ApiError) {
       return handledError;
     }
-
+    
     // 否则包装成ApiError
     return new ApiError(
       handledError.message || '请求失败',
@@ -142,14 +143,14 @@ export abstract class BaseService {
    */
   protected buildParams(params: Record<string, any>): Record<string, any> {
     const cleanParams: Record<string, any> = {};
-
+    
     Object.keys(params).forEach(key => {
       const value = params[key];
       if (value !== undefined && value !== null && value !== '') {
         cleanParams[key] = value;
       }
     });
-
+    
     return cleanParams;
   }
 
@@ -160,11 +161,11 @@ export abstract class BaseService {
     if (error.response?.data?.message) {
       return error.response.data.message;
     }
-
+    
     if (error.message) {
       return error.message;
     }
-
+    
     return defaultMessage;
   }
 
@@ -186,7 +187,7 @@ export abstract class BaseService {
         response.code
       );
     }
-
+    
     return response.data;
   }
 
@@ -199,38 +200,35 @@ export abstract class BaseService {
     delay: number = 1000
   ): Promise<T> {
     let lastError: any;
-
+    
     for (let i = 0; i <= maxRetries; i++) {
       try {
         return await operation();
       } catch (error) {
         lastError = error;
-
+        
         // 如果是最后一次重试，直接抛出错误
         if (i === maxRetries) {
           break;
         }
-
+        
         // 如果是认证错误或客户端错误，不重试
         if (error.response?.status >= 400 && error.response?.status < 500) {
           break;
         }
-
+        
         // 等待后重试
         await new Promise(resolve => setTimeout(resolve, delay * (i + 1)));
       }
     }
-
+    
     throw lastError;
   }
 
   /**
    * 缓存机制（简单实现）
    */
-  private cache = new Map<
-    string,
-    { data: any; timestamp: number; ttl: number }
-  >();
+  private cache = new Map<string, { data: any; timestamp: number; ttl: number }>();
 
   protected async getWithCache<T>(
     key: string,
@@ -239,22 +237,22 @@ export abstract class BaseService {
   ): Promise<T> {
     const cached = this.cache.get(key);
     const now = Date.now();
-
+    
     // 检查缓存是否有效
-    if (cached && now - cached.timestamp < cached.ttl) {
+    if (cached && (now - cached.timestamp) < cached.ttl) {
       return cached.data;
     }
-
+    
     // 获取新数据
     const data = await fetcher();
-
+    
     // 存储到缓存
     this.cache.set(key, {
       data,
       timestamp: now,
-      ttl,
+      ttl
     });
-
+    
     return data;
   }
 

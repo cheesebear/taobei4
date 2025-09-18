@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Trash2, Plus, Minus, ShoppingBag, ArrowLeft } from 'lucide-react';
-import TaobaoHeader from '../components/TaobaoHeader';
-import TaobaoFooter from '../components/TaobaoFooter';
+import { ShoppingBag, Minus, Plus, Trash2, ArrowLeft } from 'lucide-react';
 
 interface CartItem {
   id: number;
@@ -90,8 +88,6 @@ const CartPage: React.FC = () => {
   if (cartItems.length === 0) {
     return (
       <div className="min-h-screen bg-gray-50">
-        <TaobaoHeader />
-        
         <div className="max-w-4xl mx-auto px-4 py-8">
           <div className="bg-white rounded-lg shadow-sm p-8 text-center">
             <ShoppingBag className="w-24 h-24 text-gray-300 mx-auto mb-4" />
@@ -105,16 +101,12 @@ const CartPage: React.FC = () => {
             </button>
           </div>
         </div>
-        
-        <TaobaoFooter />
       </div>
     );
   }
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <TaobaoHeader />
-      
       <div className="max-w-6xl mx-auto px-4 py-8">
         {/* 面包屑导航 */}
         <nav className="text-sm text-gray-500 mb-6">
@@ -266,8 +258,6 @@ const CartPage: React.FC = () => {
           </div>
         </div>
       </div>
-      
-      <TaobaoFooter />
     </div>
   );
 };

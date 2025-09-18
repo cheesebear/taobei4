@@ -1,22 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { 
-  User, 
-  ShoppingBag, 
-  Heart, 
-  Settings, 
-  CreditCard, 
-  MapPin, 
-  Bell, 
-  HelpCircle,
-  LogOut,
-  Package,
-  Truck,
-  CheckCircle,
-  Star
-} from 'lucide-react';
-import TaobaoHeader from '../components/TaobaoHeader';
-import TaobaoFooter from '../components/TaobaoFooter';
+import { User, ShoppingBag, Heart, MessageCircle, Settings, LogOut, ChevronRight, Star, Package, Truck, RotateCcw, Shield } from 'lucide-react';
 
 interface Order {
   id: string;
@@ -106,16 +90,12 @@ const UserCenterPage: React.FC<UserCenterPageProps> = ({ isLoggedIn, username, o
             </button>
           </div>
         </div>
-        
-        <TaobaoFooter />
       </div>
     );
   }
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <TaobaoHeader />
-      
       <div className="max-w-7xl mx-auto px-4 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
           {/* 侧边栏 */}
@@ -374,8 +354,6 @@ const UserCenterPage: React.FC<UserCenterPageProps> = ({ isLoggedIn, username, o
           </div>
         </div>
       </div>
-      
-      <TaobaoFooter />
     </div>
   );
 };

@@ -141,7 +141,7 @@
   --container-sm: 540px;
   --container-md: 720px;
   --container-lg: 960px;
-  --container-xl: 1140px;
+  --container-xl: 100%;
   --container-xxl: 1200px;
 }
 
